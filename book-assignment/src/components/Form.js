@@ -1,37 +1,49 @@
 import React from 'react';
 
-class Form extends React.Component{
+class Form extends React.Component {
 
-  render(){
+  state = {
+    search: ''
+  }
 
-    return(
+  addSearch = value => {
+    this.setState({
+      search: value,
+    })
+    this.state.search = '';
+  }
+
+  render() {
+    console.log(this.props.searchData(this.state.search));
+
+    return (
       <div className="container">
-          <form>
+        <form onSubmit={e => {
+          e.preventDefault();
+          this.addSearch(e.target.search.value);
+        }}
+        >
           <div className='search'>
-            <label for="search">Search</label>
-            <input type='text' id='search' />
+            <label htmlFor="search-field">Search</label>
+            <input type='text' id='search-field' name='search' />
           </div>
           <div className="filterType">
-            <label for="print-type">Print Type</label>
-              <select>
-                <option value="default">Select</option>
-                <option value="eBook">eBook</option>
-                <option value="print">Print</option>
-              </select>
-            <label for="book-type">Book Type</label>
-              <select>
-                <option value="default">Select</option>
-                <option value="free">Free</option>
-                <option value="paid">Paid</option>
-              </select>
+            <label>Print Type</label>
+            <select>
+              <option value="default">Select</option>
+              <option value="eBook">eBook</option>
+              <option value="print">Print</option>
+            </select>
+            <label>Book Type</label>
+            <select>
+              <option value="default">Select</option>
+              <option value="free">Free</option>
+              <option value="paid">Paid</option>
+            </select>
           </div>
-          </form>
-        </div>
-
-
-
-
-
+          <button type='submit'>Submit</button>
+        </form>
+      </div>
     )
   }
 }

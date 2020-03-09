@@ -1,18 +1,27 @@
 import React from 'react';
-import Header from './components/Header';
-import Store from './components/Store';
-import Display from './components/Display';
-import Form from './components/Form';
+import Header from './Components/Header';
+import Store from './Components/Store';
+import Display from './Components/Display';
+import Form from './Components/Form';
 import './App.css';
 
-class App extends React.Component{
+class App extends React.Component {
+
+
+
+  getBookData = (search) => {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`)
+      .then(result => result.json())
+      .then(resultJson => console.log(resultJson))
+  }
+
 
   render() {
-    return  (
+    return (
       <div className="App">
         <Header />
-        
-        <Form />
+        <Form searchData={this.getBookData} />
+        <Display />
       </div>
     );
   }
