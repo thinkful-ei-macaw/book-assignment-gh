@@ -2,25 +2,25 @@ import React from 'react';
 
 class Form extends React.Component {
 
-  state = {
-    search: ''
-  }
+  // state = {
+  //   search: '',
+  // }
 
-  addSearch = value => {
-    this.setState({
-      search: value,
-    })
-    this.state.search = '';
-  }
+  // addSearch = value => {
+  //   this.setState({
+  //     search: value
+  //   })
+  //   this.state.search = '';
+  // }
 
   render() {
-    console.log(this.props.searchData(this.state.search));
 
     return (
       <div className="container">
         <form onSubmit={e => {
           e.preventDefault();
-          this.addSearch(e.target.search.value);
+          // this.addSearch(e.target.search.value);
+          this.props.searchData(e.target.search.value);
         }}
         >
           <div className='search'>

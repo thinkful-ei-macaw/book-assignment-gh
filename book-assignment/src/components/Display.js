@@ -4,11 +4,13 @@ class Display extends React.Component {
 
 
     render() {
+        console.log(this.props.displayData)
+
         return (
 
             <div>
                 <section>
-                    <h2>Title</h2>
+                    <h2></h2>
                     <p>Author</p>
                     <p>Price</p>
                     <p>Description</p>
