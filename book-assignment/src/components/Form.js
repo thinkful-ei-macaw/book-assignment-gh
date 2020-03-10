@@ -2,25 +2,30 @@ import React from 'react';
 
 class Form extends React.Component {
 
-  // state = {
-  //   search: '',
-  // }
 
-  // addSearch = value => {
-  //   this.setState({
-  //     search: value
-  //   })
-  //   this.state.search = '';
-  // }
+  state = {
+    value: ''
+  }
+
+  handleChange = event => {
+    this.setState({
+
+      value: event.target.value
+
+
+
+    })
+
+  }
 
   render() {
-
     return (
       <div className="container">
         <form onSubmit={e => {
           e.preventDefault();
-          // this.addSearch(e.target.search.value);
-          this.props.searchData(e.target.search.value);
+
+          this.props.searchData(e.target.search.value, this.state.value);
+
         }}
         >
           <div className='search'>
@@ -28,17 +33,11 @@ class Form extends React.Component {
             <input type='text' id='search-field' name='search' />
           </div>
           <div className="filterType">
-            <label>Print Type</label>
-            <select>
-              <option value="default">Select</option>
-              <option value="eBook">eBook</option>
-              <option value="print">Print</option>
-            </select>
             <label>Book Type</label>
-            <select>
-              <option value="default">Select</option>
-              <option value="free">Free</option>
-              <option value="paid">Paid</option>
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="print">Print</option>
+              <option value="paid-ebooks">Paid E-book</option>
+              <option value="free-ebooks">Free E-book</option>
             </select>
           </div>
           <button type='submit'>Submit</button>
